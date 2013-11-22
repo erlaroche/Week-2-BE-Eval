@@ -32,6 +32,7 @@ describe Tennis::Player do
   let(:player) do
     player = Tennis::Player.new
     player.opponent = Tennis::Player.new
+    player.opponent.opponent = player
 
     return player
   end
@@ -78,6 +79,26 @@ describe Tennis::Player do
         player.points = 2
 
         expect(player.score).to eq('thirty')
+      end
+    end
+
+    context 'when player scores following duece' do
+      it 'returns advantage' do
+       player.points = 3
+       player.opponent.points = 3
+       player.points = 4
+
+       expect(player.points).to eq('advantage')
+      end
+    end
+
+    context 'when player1 and player2 are tied at 40 a duece is called' do
+      it 'returns duece' do
+        player.points = 3 
+        player.opponent.points = 3
+
+        expect(player.score).to eq('duece')
+        expect(player.opponent.score).to eq('duece')
       end
     end
   end
