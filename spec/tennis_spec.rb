@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'rspec'
-require 'pry'
+require 'pry' 9 tes
 require_relative '../tennis'
 
 describe Tennis::Game do
@@ -14,8 +14,8 @@ describe Tennis::Game do
     end
 
     it 'sets the opponent for each player' do
-      expect(game.player1).to be_a(player2)
-      expect(game.player2).to be_a(player1)
+      expect(game.player1.opponent).to eq(game.player2)
+      expect(game.player2.opponent).to eq(game.player1)
     end
   end
 
